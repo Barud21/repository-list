@@ -8,17 +8,31 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Repository list</h1>
-    <section>
-      <form>
-        <label for="uname">Repository username:</label><br />
-        <input type="text" id="uname" name="uname" /><br />
-        <input type="submit" value="Search" />
-      </form>
-    </section>
-    <section class="repo-list">
-      <ul id="repository-list"></ul>
-    </section>
+    <header>
+      <h1>Repository list</h1>
+      <p class="header-paragraph">
+        Find all repositories for any user on Github. Repositories are ordered
+        from the most popular to the least popular (based on stars).
+      </p>
+    </header>
+
+    <main>
+      <div class="form">
+        <form>
+          <label for="uname">Repository username:</label><br />
+          <input type="text" id="uname" name="uname" class="form-input" /><br />
+          <input type="submit" value="Search" />
+        </form>
+      </div>
+      <div class="repo-list">
+        <ul id="repository-list" class="list-view"></ul>
+      </div>
+    </main>
+
+    <footer>
+      <h3>BR</h3>
+    </footer>
+
     <script type="module" src="script.js"></script>
   </body>
 </html>
