@@ -33,6 +33,16 @@ function sortArray(array) {
   });
 }
 
+function displayList(array) {
+  let list = document.getElementById("repository-list");
+
+  repositoryList.forEach((item) => {
+    let li = document.createElement("li");
+    li.innerText = `${item.name} - ${item.stars} stars`;
+    list.appendChild(li);
+  });
+}
+
 const externalAPIObject = await fetchAPIObject("allegro");
 console.log(externalAPIObject);
 
@@ -41,3 +51,4 @@ const repositoryList = mapObjectToDTO(externalAPIObject);
 sortArray(repositoryList);
 console.log("Sorted array");
 console.log(repositoryList);
+displayList(repositoryList);
