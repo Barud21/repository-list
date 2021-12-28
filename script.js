@@ -27,8 +27,18 @@ function mapObjectToDTO(externalDTO) {
   return internalDTO;
 }
 
+function sortArray(array) {
+  array.sort(function (a, b) {
+    return b.stars - a.stars;
+  });
+}
+
 const externalAPIObject = await fetchAPIObject("allegro");
 console.log(externalAPIObject);
 
 const internalDTO = mapObjectToDTO(externalAPIObject);
+console.log(internalDTO);
+
+sortArray(internalDTO);
+console.log("Sorted array");
 console.log(internalDTO);
