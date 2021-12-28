@@ -16,15 +16,15 @@ async function fetchAPIObject(username) {
 }
 
 function mapObjectToDTO(externalDTO) {
-  const internalDTO = [];
+  const repositoryList = [];
   for (let i = 0; i < externalDTO.length; i++) {
     const repo = {
       name: externalDTO[i].name,
       stars: externalDTO[i].stargazers_count,
     };
-    internalDTO.push(repo);
+    repositoryList.push(repo);
   }
-  return internalDTO;
+  return repositoryList;
 }
 
 function sortArray(array) {
@@ -36,9 +36,8 @@ function sortArray(array) {
 const externalAPIObject = await fetchAPIObject("allegro");
 console.log(externalAPIObject);
 
-const internalDTO = mapObjectToDTO(externalAPIObject);
-console.log(internalDTO);
+const repositoryList = mapObjectToDTO(externalAPIObject);
 
-sortArray(internalDTO);
+sortArray(repositoryList);
 console.log("Sorted array");
-console.log(internalDTO);
+console.log(repositoryList);
