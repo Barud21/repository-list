@@ -1,5 +1,7 @@
 "use strict";
 
+const btnSearch = document.querySelector(".btn");
+
 async function fetchAPIObject(username) {
   try {
     const response = await fetch(
@@ -36,19 +38,26 @@ function sortArray(array) {
 function displayList(array) {
   let list = document.getElementById("repository-list");
 
-  repositoryList.forEach((item) => {
+  array.forEach((item) => {
     let li = document.createElement("li");
     li.innerText = `${item.name} - ${item.stars} stars`;
     list.appendChild(li);
   });
 }
 
-const externalAPIObject = await fetchAPIObject("allegro");
-console.log(externalAPIObject);
+function clearList() {
+  let list = document.getElementById("repository-list");
+  list.innerHTML = "";
+}
 
-const repositoryList = mapObjectToDTO(externalAPIObject);
+btnSearch.addEventListener("click", () => loadData());
 
-sortArray(repositoryList);
-console.log("Sorted array");
-console.log(repositoryList);
-displayList(repositoryList);
+async function loadData() {
+  const user = document.querySelector(".form-input").value;
+  const externalAPIObject = await fetchAPIObject(user);
+
+  const repositoryList = mapObjectToDTO(externalAPIObject);
+  sortArray(repositoryList);
+  clearList();
+  displayList(repositoryList);
+}
