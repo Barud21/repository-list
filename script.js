@@ -23,6 +23,7 @@ function mapObjectToDTO(externalDTO) {
     const repo = {
       name: externalDTO[i].name,
       stars: externalDTO[i].stargazers_count,
+      url: externalDTO[i].html_url,
     };
     repositoryList.push(repo);
   }
@@ -40,8 +41,11 @@ function displayList(array) {
 
   array.forEach((item) => {
     let li = document.createElement("li");
-    li.innerText = `${item.name} - ${item.stars} stars`;
     list.appendChild(li);
+    let a = document.createElement("a");
+    a.href = item.url;
+    a.textContent = `${item.name} - ${item.stars} stars`;
+    li.appendChild(a);
   });
 }
 
@@ -55,9 +59,12 @@ btnSearch.addEventListener("click", () => loadData());
 async function loadData() {
   const user = document.querySelector(".form-input").value;
   const externalAPIObject = await fetchAPIObject(user);
+  console.log(externalAPIObject);
 
   const repositoryList = mapObjectToDTO(externalAPIObject);
+
   sortArray(repositoryList);
+  console.log(repositoryList);
   clearList();
   displayList(repositoryList);
 }
