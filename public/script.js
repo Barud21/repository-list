@@ -48,7 +48,7 @@ function displayList(array) {
     list.appendChild(li);
     let a = document.createElement("a");
     a.href = item.url;
-    a.textContent = `${item.name} - ${item.stars} stars`;
+    a.textContent = `${item.name} ⭐${item.stars}`;
     li.appendChild(a);
   });
 }
