@@ -11,20 +11,29 @@
     <header>
       <h1>Repository list</h1>
       <p class="header-paragraph">
-        Find all repositories for any user on Github. Repositories are ordered
-        from the most popular to the least popular (based on stars).
+        Find all public repositories for any user on Github. <br />Repositories
+        are ordered from the most popular<br />
+        to the least popular (based on stars).
       </p>
     </header>
 
     <div class="form">
+      <p class="form-label">Type in the username:</p>
       <input type="text" class="form-input" />
-      <button class="btn">Search</button>
+      <button id="searchBtn" class="btn">Search</button>
     </div>
-    <div class="repo-list">
-      <ul id="repository-list" class="list-view"></ul>
+    <div class="container">
+      <p class="no-repository hidden">
+        There is no such repository, try other username
+      </p>
+      <p class="list-label hidden">List of repositories</p>
+      <div class="repo-list hidden">
+        <ul id="repository-list" class="list-view"></ul>
+      </div>
     </div>
+
     <footer>
-      <h3>BR</h3>
+      <h3>Created by Bartosz Rudziński</h3>
     </footer>
 
     <script type="module" src="script.js"></script>
