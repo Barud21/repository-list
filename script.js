@@ -2,7 +2,9 @@
 
 const btnSearch = document.querySelector(".btn");
 const listView = document.querySelector(".repo-list");
+const listLabel = document.querySelector(".list-label");
 const textInput = document.querySelector(".form-input");
+const noRepository = document.querySelector(".no-repository");
 
 async function fetchAPIObject(username) {
   try {
@@ -60,11 +62,20 @@ async function loadData() {
   const user = document.querySelector(".form-input").value;
   const externalAPIObject = await fetchAPIObject(user);
   const repositoryList = mapObjectToDTO(externalAPIObject);
-  listView.classList.remove("hidden");
 
-  sortRepositoryList(repositoryList);
-  clearDisplayedList();
-  displayList(repositoryList);
+  if (repositoryList.length > 0) {
+    listView.classList.remove("hidden");
+    listLabel.classList.remove("hidden");
+    noRepository.classList.add("hidden");
+    sortRepositoryList(repositoryList);
+    clearDisplayedList();
+    displayList(repositoryList);
+  } else {
+    listView.classList.add("hidden");
+    listLabel.classList.add("hidden");
+    noRepository.classList.remove("hidden");
+    console.log("There is no such repository, try another username");
+  }
 }
 
 btnSearch.addEventListener("click", () => loadData());
