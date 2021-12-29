@@ -1,6 +1,8 @@
 "use strict";
 
 const btnSearch = document.querySelector(".btn");
+const listView = document.querySelector(".repo-list");
+const textInput = document.querySelector(".form-input");
 
 async function fetchAPIObject(username) {
   try {
@@ -30,7 +32,7 @@ function mapObjectToDTO(externalDTO) {
   return repositoryList;
 }
 
-function sortArray(array) {
+function sortRepositoryList(array) {
   array.sort(function (a, b) {
     return b.stars - a.stars;
   });
@@ -49,22 +51,25 @@ function displayList(array) {
   });
 }
 
-function clearList() {
+function clearDisplayedList() {
   let list = document.getElementById("repository-list");
   list.innerHTML = "";
 }
 
-btnSearch.addEventListener("click", () => loadData());
-
 async function loadData() {
   const user = document.querySelector(".form-input").value;
   const externalAPIObject = await fetchAPIObject(user);
-  console.log(externalAPIObject);
-
   const repositoryList = mapObjectToDTO(externalAPIObject);
+  listView.classList.remove("hidden");
 
-  sortArray(repositoryList);
-  console.log(repositoryList);
-  clearList();
+  sortRepositoryList(repositoryList);
+  clearDisplayedList();
   displayList(repositoryList);
 }
+
+btnSearch.addEventListener("click", () => loadData());
+textInput.addEventListener("keyup", function (event) {
+  if (event.keyCode === 13) {
+    document.getElementById("searchBtn").click();
+  }
+});
