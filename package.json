@@ -1,0 +1,32 @@
+{
+  "name": "repository-list",
+  "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  },
+  "description": "List of public repositories for any GitHub user.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Barud21/repository-list.git"
+  },
+  "keywords": [
+    "repository",
+    "list",
+    "javascript"
+  ],
+  "author": "Bartosz Rudzinski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Barud21/repository-list/issues"
+  },
+  "homepage": "https://github.com/Barud21/repository-list#readme"
+}
